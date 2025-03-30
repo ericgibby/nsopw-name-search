@@ -6,9 +6,17 @@ import Papa from 'papaparse';
 // Load names from a CSV file
 const csvFilePath = resolve(__dirname, '..', 'names.csv'); // Path to your CSV file
 const csvData = fs.readFileSync(csvFilePath, 'utf8');
-const names = Papa.parse<{ firstName: string; lastName: string }>(csvData, {
+const csv = Papa.parse<{ firstName: string; lastName: string }>(csvData, {
 	header: true,
 }).data;
+// Filter out rows with missing names and make sure they are unique
+const names = Array.from(
+	new Map(
+		csv
+			.filter((row) => row.firstName?.trim() && row.lastName?.trim())
+			.map((row) => [`${row.firstName.trim()}${row.lastName.trim()}`, row]),
+	).values(),
+);
 
 test.describe('navigate to nsopw.gov for each name', () => {
 	// Use a single browser context for all tests
