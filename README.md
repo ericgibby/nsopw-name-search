@@ -39,4 +39,4 @@ The intent of this project is automate the process of checking for names on the 
    npm test
    ```
 
-   Note: Tests can take a while to run. There is a delay of 10-20 seconds between each test to avoid rate-limiting on the NSOPW website.
+   Note: Tests can take a while to run. There is a delay of 5-10 seconds between each test to avoid rate-limiting on the NSOPW website.

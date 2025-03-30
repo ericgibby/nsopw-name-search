@@ -59,8 +59,8 @@ test.describe('navigate to nsopw.gov for each name', () => {
 			);
 			await expect(noDataCell).toBeVisible(); // Fail the test if the <td> element is not visible
 
-			// Add a delay of 10-20 seconds before the next test
-			const delay = Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000; // Random delay between 10-20 seconds
+			// Add a delay of 5-10 seconds before the next test to avoid rate-limiting
+			const delay = Math.floor(Math.random() * 5_000) + 5_000;
 			await page.waitForTimeout(delay);
 		});
 	}
